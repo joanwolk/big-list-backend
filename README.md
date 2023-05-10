@@ -2,6 +2,16 @@
 
 This is the backend that hosts The Big List, the list of all University of Chicago Scavenger Hunt items. It is built in Rails with a Postgresql Database.
 
+# Using the API
+
+The api currently only has one endpoint, `/items`. It additionally accepts the following query string parameters: year, item_number, item_text, points. They can be chained in any order or omitted.
+
+So, to get all the items that contain the word "list" from 2020 that were one point, you could go to:
+`/items?points=1&year=2020&item_text=list`
+
+Alternatively, you could just grab the first item on the 2020 list:
+`/items?year=2022&points=1`
+
 # Setup
 
 Ensure your environment is set up with ruby installed, rails installed, and postgresql installed and running if you would like to develop locally.

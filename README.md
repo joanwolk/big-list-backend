@@ -6,11 +6,8 @@ This is the backend that hosts The Big List, the list of all University of Chica
 
 The api currently only has one endpoint, `/items`. It additionally accepts the following query string parameters: year, item_number, item_text, points. They can be chained in any order or omitted.
 
-So, to get all the items that contain the word "list" from 2020 that were one point, you could go to:
-`/items?points=1&year=2020&item_text=list`
-
-Alternatively, you could just grab the first item on the 2020 list:
-`/items?year=2022&points=1`
+So, to get all the items that contain the word "list" from 1992 that were one point with item_number 30 (which would be necessarily one item, but is a good example), you could go to:
+`https://the-big-list-backend.herokuapp.com/items?points=1&item_text=list&year=1992&item_number=30`
 
 # Setup
 

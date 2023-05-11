@@ -1,0 +1,58 @@
+version: 2.1
+
+commands:
+  setup_db:
+    steps:
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rake db:create && bundle exec rails db:schema:load --trace
+
+orbs:
+  ruby: circleci/ruby@2.0.0
+  gitleaks: upenn-libraries/gitleaks@1.0.0
+
+ruby_env_defaults: &ruby_env_defaults
+  RAILS_ENV: test
+  RACK_ENV: test
+  DATABASE_URL: "postgresql://postgres@localhost:5432/ethel_test"
+postgres_env_defaults: &postgres_env_defaults
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: ""
+  POSTGRES_DB: ethel_test
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+jobs:
+  rspec:
+    docker:
+      - image: cimg/ruby:3.2.2
+      - image: cimg/postgres:15.2
+      - image: cimg/redis:6.2
+    environment:
+      <<: *ruby_env_defaults
+      <<: *postgres_env_defaults
+    steps:
+      - checkout
+      - ruby/install-deps
+      - setup_db
+      - ruby/rspec-test
+
+  rubocop:
+    docker:
+      - image: cimg/ruby:3.2.2
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rubocop-check
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - rspec
+      - rubocop
+      - gitleaks/check_local:
+          image: "quay.io/upennlibraries/gitleaks:v1.23.0"
+          options: "--redact --repo-config"

@@ -29,5 +29,8 @@ Metrics/AbcSize:
 Rails/FilePath:
   Enabled: false
 
+Style/Lambda:
+  Enabled: false
+
 Style/RedundantConstantBase:
   Enabled: false

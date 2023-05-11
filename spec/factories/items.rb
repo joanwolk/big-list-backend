@@ -11,5 +11,8 @@ FactoryBot.define do
     rating { 'Caution' }
     errata { 'This was bad' }
     comment { 'Why would they do this' }
+    trait :nsfp do
+      rating { 'NSFP' }
+    end
   end
 end

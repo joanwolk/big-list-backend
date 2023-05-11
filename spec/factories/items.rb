@@ -10,6 +10,6 @@ FactoryBot.define do
     point_value { 20 }
     rating { 'Caution' }
     errata { 'This was bad' }
-    context { 'Why would they do this' }
+    comment { 'Why would they do this' }
   end
 end

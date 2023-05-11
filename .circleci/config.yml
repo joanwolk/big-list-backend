@@ -13,7 +13,7 @@ commands:
 orbs:
   ruby: circleci/ruby@2.0.0
   gitleaks: upenn-libraries/gitleaks@1.0.0
-
+  
 ruby_env_defaults: &ruby_env_defaults
   RAILS_ENV: test
   RACK_ENV: test

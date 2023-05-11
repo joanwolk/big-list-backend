@@ -46,4 +46,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0'
   gem 'rubocop-discourse', '~> 3.2'
   gem 'rubocop-rails', '~> 2.19'
+  gem "rspec_junit_formatter", "~> 0.6.0"
 end
+

@@ -4,10 +4,12 @@ This is the backend that hosts The Big List, the list of all University of Chica
 
 # Using the API
 
-The api currently only has one endpoint, `/items`. It additionally accepts the following query string parameters: year, item_number, item_text, points. They can be chained in any order or omitted.
+The api currently only has one endpoint, `/items`. It additionally accepts the following query string parameters: year, item_number, item_text, points, rating. They can be chained in any order or omitted.
+
+Rating takes in values "Safe", "Caution", "NSFP" and produces items of that rating or lower. By default, the API will return safe and caution items but not NSFP items.
 
 So, to get all the items that contain the word "list" from 1992 that were one point with item_number 30 (which would be necessarily one item, but is a good example), you could go to:
-`https://the-big-list-backend.herokuapp.com/items?points=1&item_text=list&year=1992&item_number=30`
+`https://the-big-list-backend.herokuapp.com/items?points=1&item_text=list&year=1992&item_number=30&rating=Safe`
 
 # Setup
 

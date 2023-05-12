@@ -49,3 +49,5 @@ group :development, :test do
   gem "rspec_junit_formatter", "~> 0.6.0"
 end
 
+
+gem "active_model_serializers", "~> 0.10.13"

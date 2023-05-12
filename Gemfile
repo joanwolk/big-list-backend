@@ -51,3 +51,5 @@ group :development do
   # gem "spring"
   gem 'rubocop-rails', '~> 2.19'
 end
+
+gem "active_model_serializers", "~> 0.10.13"

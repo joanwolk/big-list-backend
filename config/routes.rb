@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :items, only: [:index]
+  resources :users, only: [:show] # TODO: add endpoints for :new, :create, :edit, :update, :destroy
 end

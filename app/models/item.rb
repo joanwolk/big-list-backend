@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   RATINGS = ['', '?', 'Safe', 'Caution', 'NSFP'].freeze
   scope :year, ->(year = nil) { year ? where(year:) : all }
   scope :item_number, ->(number = nil) { number ? where(item_number: number) : all }
-  scope :item_text, ->(text = '') { where('original_item LIKE ?', "%#{text}%") }
+  scope :item_text, ->(text = '') { where('LOWER(original_item) LIKE ?', "%#{text}%") }
   scope :points, ->(number = nil) { number ? where(point_value: number) : all }
   scope :rating, ->(rated = 'Caution') {
     accepted_ratings_index = (RATINGS.map(&:downcase).index(rated&.downcase) || 3) + 1

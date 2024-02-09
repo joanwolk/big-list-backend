@@ -25,6 +25,11 @@ RSpec.describe Item, type: :model do
       expect(Item.filter_by_params({ item_text: 'shit' }).count).to be(1)
     end
 
+    it 'is not case-sensitive for item text' do
+      shit2.update(original_item: 'Huge tracts of land')
+      expect(Item.filter_by_params({ item_text: 'huge' }).count).to be(1)
+    end
+
     it 'filters by points' do
       shit2.update(point_value: 1)
       expect(Item.filter_by_params({ points: 1 }).count).to be(1)
